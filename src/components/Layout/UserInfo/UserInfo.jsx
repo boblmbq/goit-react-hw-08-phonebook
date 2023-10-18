@@ -1,9 +1,14 @@
+import { useDispatch } from 'react-redux';
+import { logout } from 'redux/userOperations';
+
 const UserInfo = () => {
+  const dispatch = useDispatch();
+
   return (
-    <>
-      <p>name</p>
+    <div>
       <p>email</p>
-    </>
+      <button onClick={() => dispatch(logout())}>Logout</button>
+    </div>
   );
 };
 

@@ -3,7 +3,6 @@ import css from './ContactForm.module.css';
 
 import { useAddContactMutation, useGetAllContactsQuery } from 'redux/operation';
 
-
 const LABEL_IDS = {
   nameId: nanoid(),
   numberId: nanoid(),
@@ -25,8 +24,11 @@ export const ContactForm = () => {
       return;
     }
 
-    await addConatct({ name, number });
-    
+    try {
+      await addConatct({ name, number });
+    } catch (error) {
+      console.log(error);
+    }
 
     e.target.reset();
   };

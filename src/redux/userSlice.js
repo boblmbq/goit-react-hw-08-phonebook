@@ -30,12 +30,12 @@ const userSlice = createSlice({
         isLogedIn: true,
       };
     },
-    [logout.fulfilled]: (state, action) => {
+    [logout.fulfilled]: state => {
       return {
         ...state,
-        user: action.payload.user,
-        token: action.payload.token,
-        isLogedIn: true,
+        user: { name: null, email: null },
+        token: null,
+        isLogedIn: false,
       };
     },
   },

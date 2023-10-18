@@ -11,6 +11,9 @@ export const ContactList = () => {
   const filterValue = useSelector(selectFilter);
 
   const filteredContacts = () => {
+    if (!data) {
+      return [];
+    }
     return data.filter(contact =>
       contact.name.toLowerCase().includes(filterValue.toLowerCase())
     );

@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import UserInfo from '../UserInfo/UserInfo';
 import { LiAuthStyled, UlStyled } from './Header.styled';
 import { useSelector } from 'react-redux';
-import { selectLoginTruth } from 'redux/userSelectors';
+import { selectLogedIn } from 'redux/userSelectors';
 
 const Header = () => {
-  const logedIn = useSelector(selectLoginTruth);
+  const logedIn = useSelector(selectLogedIn);
 
   return (
     <header>
