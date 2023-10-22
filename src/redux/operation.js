@@ -26,8 +26,9 @@ const axiosBaseQuery =
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
-  baseQuery: axiosBaseQuery({
+  baseQueryFn: axiosBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com/',
+    
   }),
   endpoints: build => ({
     getAllContacts: build.query({
@@ -36,6 +37,7 @@ export const contactsApi = createApi({
     }),
     addContact: build.mutation({
       queryFn: async ({ name, number }) => {
+        
         const { data, error } = await axios.post('/contacts', { name, number });
         if (error) return { error };
         return data;

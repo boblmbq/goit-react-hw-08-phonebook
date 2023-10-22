@@ -4,8 +4,15 @@ import { ContactForm, Filter, ContactList } from 'components';
 import LoginForm from 'components/LoginForm/LoginForm';
 import { Route, Routes } from 'react-router-dom';
 import Layout from 'components/Layout/Layout';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getUserByPersistedToken } from 'redux/userOperations';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserByPersistedToken());
+  }, [dispatch]);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

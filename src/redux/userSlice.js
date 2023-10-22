@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout, register } from './userOperations';
+import {
+  login,
+  logout,
+  register,
+  getUserByPersistedToken,
+} from './userOperations';
 
 const initialState = {
   user: {
@@ -36,6 +41,13 @@ const userSlice = createSlice({
         user: { name: null, email: null },
         token: null,
         isLogedIn: false,
+      };
+    },
+    [getUserByPersistedToken.fulfilled]: (state, action) => {
+      return {
+        ...state,
+        user: action.payload,
+        isLogedIn: true,
       };
     },
   },
