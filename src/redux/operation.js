@@ -2,15 +2,19 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
 const axiosBaseQuery =
-  ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url, method, data, params, headers }) => {
+  (
+    { baseUrl } = {
+      baseUrl: '',
+    }
+  ) =>
+  async ({ url, method, headers, data, params }) => {
     try {
       const result = await axios({
         url: baseUrl + url,
+        headers: headers,
         method,
         data,
         params,
-        headers,
       });
       return { data: result.data };
     } catch (axiosError) {
@@ -26,18 +30,21 @@ const axiosBaseQuery =
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
-  baseQueryFn: axiosBaseQuery({
+  baseQuery: axiosBaseQuery({
     baseUrl: 'https://connections-api.herokuapp.com/',
-    
   }),
   endpoints: build => ({
     getAllContacts: build.query({
-      query: () => ({ url: 'contacts', method: 'get' }),
+      query: () => {
+        return {
+          url: 'contacts',
+          method: 'get',
+        };
+      },
       providesTags: ['Contact'],
     }),
     addContact: build.mutation({
       queryFn: async ({ name, number }) => {
-        
         const { data, error } = await axios.post('/contacts', { name, number });
         if (error) return { error };
         return data;

@@ -17,7 +17,7 @@ const initialState = {
 
 const userSlice = createSlice({
   name: 'userSlice',
-  initialState: initialState,
+  initialState,
   extraReducers: {
     [register.fulfilled]: (state, action) => {
       return {

@@ -10,7 +10,7 @@ const LABEL_IDS = {
 
 const { nameId, numberId } = LABEL_IDS;
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const [addConatct] = useAddContactMutation();
   const { data } = useGetAllContactsQuery();
 
@@ -60,3 +60,5 @@ export const ContactForm = () => {
     </form>
   );
 };
+
+export default ContactForm;
