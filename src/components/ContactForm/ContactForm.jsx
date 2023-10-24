@@ -1,7 +1,8 @@
 import { nanoid } from 'nanoid';
 import css from './ContactForm.module.css';
 import { useAddContactMutation, useGetAllContactsQuery } from 'redux/operation';
-import { Field, Formik, Form } from 'formik';
+import { Field, Formik } from 'formik';
+import { StyledForm, StyledLabel } from './ContactForm.styled';
 
 const initialValues = {
   name: '',
@@ -34,9 +35,9 @@ const ContactForm = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onFormSubmit}>
-      <Form>
-        <label htmlFor={nameId}>
-          Name
+      <StyledForm>
+        <StyledLabel htmlFor={nameId}>
+          Name:
           <Field
             id={nameId}
             type="text"
@@ -45,10 +46,10 @@ const ContactForm = () => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           ></Field>
-        </label>
+        </StyledLabel>
 
-        <label htmlFor={numberId}>
-          Number
+        <StyledLabel htmlFor={numberId}>
+          Number:
           <Field
             id={numberId}
             type="tel"
@@ -57,12 +58,12 @@ const ContactForm = () => {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           ></Field>
-        </label>
+        </StyledLabel>
 
         <button type="submit" className={css.button}>
           Add contact
         </button>
-      </Form>
+      </StyledForm>
     </Formik>
   );
 };
