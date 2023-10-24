@@ -4,6 +4,7 @@ import {
   useDeleteContactMutation,
   useGetAllContactsQuery,
 } from 'redux/operation';
+import { LiStyled, Textwrapper } from './ContactList.styled';
 
 export const ContactList = () => {
   const [deleteContact] = useDeleteContactMutation();
@@ -24,10 +25,12 @@ export const ContactList = () => {
       {isFetching === false &&
         filteredContacts().map(({ name, number, id }) => {
           return (
-            <li key={id}>
-              <p>
-                {name}: {number}
-              </p>
+            <LiStyled key={id}>
+              <Textwrapper>
+                <p>Name: {name}</p>
+                <p>Number: {number}</p>
+              </Textwrapper>
+
               <button
                 type="button"
                 onClick={async () => {
@@ -36,7 +39,7 @@ export const ContactList = () => {
               >
                 Delete
               </button>
-            </li>
+            </LiStyled>
           );
         })}
     </ul>

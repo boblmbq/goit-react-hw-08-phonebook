@@ -1,6 +1,7 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/userOperations';
+import { StyledForm, StyledLabel } from './RegisterForm.styled';
 
 export const initialValues = {
   name: '',
@@ -18,33 +19,28 @@ const RegisterForm = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form autoComplete="on">
-        <label htmlFor="name">
-          Name
+      <StyledForm autoComplete="on">
+        <StyledLabel htmlFor="name">
+          Name:
           <Field id="name" type="text" name="name" autoComplete="on"></Field>
-        </label>
+        </StyledLabel>
 
-        <label htmlFor="email">
-          Email
-          <Field
-            id="email"
-            type="text"
-            name="email"
-            autoComplete="on"
-          ></Field>
-        </label>
+        <StyledLabel htmlFor="email">
+          Email:
+          <Field id="email" type="text" name="email" autoComplete="on"></Field>
+        </StyledLabel>
 
-        <label htmlFor="password">
-          Password
+        <StyledLabel htmlFor="password">
+          Password:
           <Field
             id="password"
             type="password"
             name="password"
             autoComplete="on"
           ></Field>
-        </label>
+        </StyledLabel>
         <button type="submit">Submit</button>
-      </Form>
+      </StyledForm>
     </Formik>
   );
 };

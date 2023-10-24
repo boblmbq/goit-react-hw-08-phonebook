@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { getUserByPersistedToken } from 'redux/userOperations';
 
 import { Div } from './App.styled';
+import PrivateRoute from 'guards/PrivateRoute';
+import PublicRoute from 'guards/PublickRoute';
 
 const Layout = lazy(() => import('../Layout'));
 const ContactForm = lazy(() => import('../ContactForm'));
@@ -24,23 +26,41 @@ export const App = () => {
     <Suspense fallback={'loading'}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/register" element={<RegisterForm />}></Route>
-          <Route path="/login" element={<LoginForm />}></Route>
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <RegisterForm />
+              </PublicRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginForm />
+              </PublicRoute>
+            }
+          ></Route>
+
           <Route
             index
             element={
-              <Div>
-                <h1>Phonebook</h1>
-                <ContactForm />
+              <PrivateRoute>
+                <Div>
+                  <h1>Phonebook</h1>
+                  <ContactForm />
 
-                <h2>Contacts</h2>
-                <Filter />
-                <ContactList />
-              </Div>
+                  <h2>Contacts</h2>
+                  <Filter />
+                  <ContactList />
+                </Div>
+              </PrivateRoute>
             }
           ></Route>
         </Route>
       </Routes>
-    </Suspense> 
+    </Suspense>
   );
 };

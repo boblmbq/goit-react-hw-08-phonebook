@@ -1,14 +1,20 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'redux/userOperations';
+import { selectName } from 'redux/userSelectors';
 
 const UserInfo = () => {
   const dispatch = useDispatch();
+  const name = useSelector(selectName);
 
   return (
-    <div>
-      <p>email</p>
-      <button onClick={() => dispatch(logout())}>Logout</button>
-    </div>
+    <>
+      <li>
+        <p>{name}</p>
+      </li>
+      <li>
+        <button onClick={() => dispatch(logout())}>Logout</button>
+      </li>
+    </>
   );
 };
 

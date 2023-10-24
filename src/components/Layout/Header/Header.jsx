@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import UserInfo from '../UserInfo/UserInfo';
-import { LiAuthStyled, UlStyled } from './Header.styled';
+import { HeaderStyled, LiAuthStyled, UlStyled } from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectLogedIn } from 'redux/userSelectors';
 
@@ -8,7 +8,7 @@ const Header = () => {
   const logedIn = useSelector(selectLogedIn);
 
   return (
-    <header>
+    <HeaderStyled>
       <nav>
         <UlStyled>
           <li>
@@ -27,7 +27,7 @@ const Header = () => {
           </LiAuthStyled>
         </UlStyled>
       </nav>
-    </header>
+    </HeaderStyled>
   );
 };
 

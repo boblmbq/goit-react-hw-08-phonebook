@@ -9,9 +9,9 @@ const Layout = () => {
       <Header />
 
       <Container>
-        {/* <Suspense fallback={'loading'}> */}
+        <Suspense fallback={'loading'}>
           <Outlet />
-        {/* </Suspense> */}
+        </Suspense>
       </Container>
     </>
   );
