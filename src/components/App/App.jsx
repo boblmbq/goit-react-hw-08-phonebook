@@ -4,14 +4,11 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUserByPersistedToken } from 'redux/userOperations';
 
-import { Div } from './App.styled';
 import PrivateRoute from 'guards/PrivateRoute';
 import PublicRoute from 'guards/PublickRoute';
 
+const ContactsPage = lazy(() => import('pages/ContactsPage/ContactsPage'));
 const Layout = lazy(() => import('../Layout'));
-const ContactForm = lazy(() => import('../ContactForm'));
-const Filter = lazy(() => import('../Filter'));
-const ContactList = lazy(() => import('../ContactList'));
 const LoginForm = lazy(() => import('../LoginForm'));
 const RegisterForm = lazy(() => import('../RegisterForm'));
 
@@ -33,7 +30,7 @@ export const App = () => {
                 <RegisterForm />
               </PublicRoute>
             }
-          ></Route>
+          />
 
           <Route
             path="/login"
@@ -42,23 +39,16 @@ export const App = () => {
                 <LoginForm />
               </PublicRoute>
             }
-          ></Route>
+          />
 
           <Route
             index
             element={
               <PrivateRoute>
-                <Div>
-                  <h1>Phonebook</h1>
-                  <ContactForm />
-
-                  <h2>Contacts</h2>
-                  <Filter />
-                  <ContactList />
-                </Div>
+                <ContactsPage />
               </PrivateRoute>
             }
-          ></Route>
+          />
         </Route>
       </Routes>
     </Suspense>

@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 
+const justiContent = logedIn => {
+  if (logedIn) return 'space-between';
+  return 'end';
+};
+
 export const HeaderStyled = styled.header`
   height: auto;
   padding: 20px 20px;
@@ -7,7 +12,7 @@ export const HeaderStyled = styled.header`
 
 export const UlStyled = styled.ul`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props => justiContent(props.logedIn)};
 `;
 
 export const LiAuthStyled = styled.ul`

@@ -21,7 +21,7 @@ const ContactForm = () => {
   const { data } = useGetAllContactsQuery();
 
   const onFormSubmit = async (values, { resetForm }) => {
-    if (data.some(e => e.name === values.name)) {
+    if (data.some(e => e.name.toLowerCase() === values.name.toLowerCase())) {
       alert('this contact is allready exist, please add a new one');
       return;
     }

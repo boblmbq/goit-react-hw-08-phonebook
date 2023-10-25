@@ -2,18 +2,23 @@ import { Link } from 'react-router-dom';
 import UserInfo from '../UserInfo/UserInfo';
 import { HeaderStyled, LiAuthStyled, UlStyled } from './Header.styled';
 import { useSelector } from 'react-redux';
-import { selectLogedIn } from 'redux/userSelectors';
+import { selectLogedIn, selectName } from 'redux/userSelectors';
 
 const Header = () => {
   const logedIn = useSelector(selectLogedIn);
+  const name = useSelector(selectName);
 
   return (
     <HeaderStyled>
       <nav>
-        <UlStyled>
-          <li>
-            <Link to="/">Cotnacts</Link>
-          </li>
+        <UlStyled logedIn={logedIn}>
+          {logedIn && (
+            <li>
+              <p>
+                Welcome <b>{name}</b>!
+              </p>
+            </li>
+          )}
 
           <LiAuthStyled>
             {logedIn ? (
